@@ -18,5 +18,5 @@ const updateTeams = async (teams, i = 0) => {
 (async() => {
   const allTeams = await onfleet.teams.list();
   const vDayTeams = allTeams.filter(team => /.*vday.*/i.test(team.name));
-  await updateTeams(vDayTeams, table);
+  await updateTeams(vDayTeams);
 })();
