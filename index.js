@@ -10,11 +10,11 @@ const pool = new Pool ({
 const updateTeams = async (teams, i = 0) => {
   try {
     await pool.query('update $1 set onfleet_team_id=$2 where description=$3',[table, team.id[i], team.name[i]])
+    console.log(`Updated ${teams[i].name}`);
+    if (i+1 < teams.length) await updateTeams(teams, i+1);
   } catch (e) {
     console.log(e);
   }
-  console.log(`Updated ${teams[i].name}`);
-  if (i+1 < teams.length) updateTeams(teams, i+1);
 }
 
 (async() => {
